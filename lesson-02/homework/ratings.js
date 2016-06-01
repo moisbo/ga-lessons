@@ -4,7 +4,7 @@ var minAgeForRating = [0, 9, 12, 15];
 
 ages.forEach(function (age) {
     var allowed = minAgeForRating.filter(function (mafr) {      
-        return mafr < age;
+        return mafr <= age;
     });
     var rating = [];
     allowed.forEach(function (a, index) {
