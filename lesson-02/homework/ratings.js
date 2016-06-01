@@ -3,11 +3,12 @@ var ratings = ['G', 'PG', 'M', 'MA'];
 var minAgeForRating = [0, 9, 12, 15];
 
 ages.forEach(function (age) {
-    var allow = [];
-    minAgeForRating.forEach(function (mafr, index) {      
-        if(age >= mafr){
-            allow.push(ratings[index]);
-        }
+    var allowed = minAgeForRating.filter(function (mafr) {      
+        return mafr < age;
     });
-    console.log("Age " + age + " is allowed to see " + allow);
-})
+    var rating = [];
+    allowed.forEach(function (a, index) {
+        rating.push(ratings[index]);
+    });
+    console.log("Age " + age + " is allowed to see " + rating);
+});
