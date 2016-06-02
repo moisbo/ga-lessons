@@ -4,6 +4,22 @@ Creating a page where every time the user hits the "Roll Dice" button, the scree
 
 1) Write down pseudocode for the following program.
 
+
+diceRoll:
+    random1 <= random([1-6])
+    random2 <= random([1-6])
+
+    firstDie <= 'dice-1' + random1
+    secondDie <= 'dice-2' + random2
+
+    firstElement <= document.getElementById('firstDie')  
+    secondElement <= document.getElementById('secondDie')
+
+roll <= docuent.getElementById('roll-dice')
+
+roll.onClick ->
+  diceRoll()
+ 
 2) Follow the steps below to write your code.
 * generate a random number between 1 - 6 and store to a variable, random1
 * generate a random number between 1 - 6 and store to a variable, random2
@@ -15,3 +31,25 @@ Creating a page where every time the user hits the "Roll Dice" button, the scree
 3) Check to see if the Dice Roll has been hit, if it has run the diceRoll function.
 
 */
+
+var random = () => Math.floor(Math.random() * (7-1)) + 1;
+
+var diceRoll = function () {
+    
+    var random1 = random();
+    var random2 = random();
+
+    var firstDie = 'dice-' + random1;
+    var secondDie = 'dice-' + random2;
+
+    var firstElement = document.getElementById('first-die');
+    var secondElement = document.getElementById('second-die');
+    
+    firstElement.setAttribute('class', firstDie);
+    secondElement.setAttribute('class', secondDie);
+};
+
+document
+    .getElementById('roll-dice')
+    .addEventListener("click", () => { diceRoll() });
+  
