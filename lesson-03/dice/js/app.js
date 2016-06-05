@@ -34,6 +34,9 @@ roll.onClick ->
 
 var random = () => Math.floor(Math.random() * (7-1)) + 1;
 
+var firstElement = document.getElementById('first-die');
+var secondElement = document.getElementById('second-die');
+    
 var diceRoll = function () {
     
     var random1 = random();
@@ -42,14 +45,11 @@ var diceRoll = function () {
     var firstDie = 'dice-' + random1;
     var secondDie = 'dice-' + random2;
 
-    var firstElement = document.getElementById('first-die');
-    var secondElement = document.getElementById('second-die');
-    
     firstElement.setAttribute('class', firstDie);
     secondElement.setAttribute('class', secondDie);
 };
 
 document
     .getElementById('roll-dice')
-    .addEventListener("click", () => { diceRoll() });
+    .addEventListener("click", diceRoll);
   
