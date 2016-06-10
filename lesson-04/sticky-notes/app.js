@@ -12,7 +12,7 @@
         
         var addBox = function (color, note) {
             index++;
-            var container = document.getElementsByClassName('container')[0];
+            var container = document.querySelector('.container');
             container.appendChild(box(color, note));
         };
         
