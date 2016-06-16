@@ -38,8 +38,8 @@ Here are some bonus tasks to push your DOM knowledge!
 
   function archiveClick(event){
     event.preventDefault();
-    var parent = document.getElementById('my-list');
-    parent.removeChild(document.getElementById(event.target.id));
+    var parent = event.target.parentNode;
+    parent.removeChild(event.target);
     addToList(document.querySelector('#archive-list'), event.target.innerHTML, list++);
   }
 
