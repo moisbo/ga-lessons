@@ -27,6 +27,10 @@ bot.startRTM(function(error, whichBot, payload) {
   }
 });
 
+bot.api.channels.list({'exclude_archived' : 1}, function (err, res) {  
+    console.log(res);
+});
+
 controller.hears(['hello'], ['mention'], function(whichBot, message) {
   whichBot.reply(message, 'Did you say my name?');
 });
@@ -49,8 +53,7 @@ controller.hears(['pizzatime'], ['mention'], function(bot,message) {
       });
     }
     askSize = function(response, convo) {
-      convo.ask('What size do you want?', function(response, convo) {
-          console.log(response.text);
+      convo.ask('What size do you want?', function(response, convo) {          
           var re = new RegExp(/(large)|(extra-large)|(medium)|(small)/);
           if(re.exec(response.text)){
             convo.say('Ok. ' + response.text);
@@ -116,3 +119,5 @@ function formatUptime(uptime) {
     uptime = uptime + ' ' + unit;
     return uptime;
 }
+
+
