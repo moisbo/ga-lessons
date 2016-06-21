@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tasty Fruit</title>
+  </head>
+  <body>
+    <img id="fruits" src="http://bit.ly/1V62kTZ" />
+    <h1>Some <span class="highlight">nice</span> fruits</h1>
+    <ul>
+      <li>Apples</li>
+      <li>Pears</li>
+      <li><span class="highlight">Blood</span> Oranges</li>
+    </ul>
+    <script>
+        /*
+        document.querySelector('body').addEventListener('click', (event) => {
+        console.log('clicked body')
+        }, true)
+        document.querySelector('li').addEventListener('click', (event) => {
+        console.log('clicked li')
+        event.stopPropagation()
+        })
+        document.querySelector('ul').addEventListener('click', (event) => {
+        console.log('clicked ul')
+        })
+        */
+        /**
+         * It will have a sort of error because if we have a span inside the li it would not trigger
+         */
+        var body = document.querySelector('body')
+        body.addEventListener('click', (event) => {
+
+            if (event.target.matches('li')) {
+                console.log('clicked li, handled in body')
+                console.log(event.target)
+            }
+        })
+
+        
+
+
+    </script>
+  </body>
+</html>

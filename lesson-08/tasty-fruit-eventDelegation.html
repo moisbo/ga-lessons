@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tasty Fruit</title>
+  </head>
+  <body>
+    <img id="fruits" src="http://bit.ly/1V62kTZ" />
+    <h1>Some <span class="highlight">nice</span> fruits</h1>
+    <ul>
+      <li>Apples</li>
+      <li>Pears</li>
+      <li><span class="highlight">Blood</span> Oranges</li>
+    </ul>
+    <script>
+        function siblings(selector) {
+            var element = document.querySelector(selector)
+            var childElements = Array.from(element.parentNode.children)
+            return childElements.filter(function(child) {
+                return child !== element
+            })
+        }
+
+        function closest(element, query) {
+            while (element !== document) {
+                if (element.matches(query)) {
+                return element
+                }
+                element = element.parentNode
+            }
+            return null
+        }
+
+        //An Event Delegation Patern
+        function delegate(selector, eventName, targetSelector, listener) {
+            document.querySelector(selector).addEventListener(eventName, function (event) {
+                var closestMatch = closest(event.target, targetSelector)
+                if (closestMatch) {
+                    event.delegateTarget = closestMatch
+                    listener(event)
+                }
+            })
+        }
+
+        delegate('body', 'click', 'li', (event) => {
+            console.log(event.delegateTarget)
+        })
+    </script>
+  </body>
+</html>
