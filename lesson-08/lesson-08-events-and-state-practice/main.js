@@ -28,24 +28,27 @@ Here are some bonus tasks to push your DOM knowledge!
 
   delegate('body', 'click', '#my-list', (event) => {
     event.preventDefault();
-    var value = event.target.innerText
-    render(value, document.getElementById('archive'));
-    var parent = event.target.parentNode;
-    parent.removeChild(event.target);
+    state.value = event.target.innerText
+    state.color = '';
+    event.target.parentNode.removeChild(event.target);
+    render(state, document.getElementById('archive'));
   });
 
   delegate('body', 'click', '#new-thing-button', (event) => {
     event.preventDefault();
-    var value = document.getElementById('new-thing').value
-    if(value){
-      render(value, document.getElementById('my-list'));
+    var newThing = document.getElementById('new-thing');
+    state.value = newThing.value;
+    state.color = 'green';
+    if(newThing){
+      newThing.value = '';
+      render(state, document.getElementById('my-list'));
     }
   })
-
-  //View
+  
   function render(data, into) {
     var li = document.createElement('li');
-    li.innerHTML = `${data}`
+    li.innerHTML = data.value
+    li.style.backgroundColor = data.color;
     into.appendChild(li);
   }
 })()
