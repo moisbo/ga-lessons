@@ -23,32 +23,47 @@ Here are some bonus tasks to push your DOM knowledge!
 
 (function() {
 
-  var container = document.querySelector('#container')
-  var state = {}
-
-  delegate('body', 'click', '#my-list', (event) => {
-    event.preventDefault();
-    state.value = event.target.innerText
-    state.color = '';
-    event.target.parentNode.removeChild(event.target);
-    render(state, document.getElementById('archive'));
-  });
+  var container = document.querySelector('#container');
+  var state = {
+    list:[],
+    archive:[]
+  };
 
   delegate('body', 'click', '#new-thing-button', (event) => {
     event.preventDefault();
     var newThing = document.getElementById('new-thing');
-    state.value = newThing.value;
-    state.color = 'green';
-    if(newThing){
+    if(newThing.value !== ''){
+      var li = `<li class="the-new-thing">${newThing.value}</li>`;
+      state.list.push(li);
       newThing.value = '';
-      render(state, document.getElementById('my-list'));
+      render(state, container);
     }
   })
   
+  delegate('#container', 'click', '.the-new-thing', (event) => {
+    event.preventDefault();
+    console.log(event.target);
+    var li = `<li class="old-thing">${event.target.text}</li>`;
+    state.archive.push(li);
+    render(state, container);
+  })
+  
   function render(data, into) {
-    var li = document.createElement('li');
-    li.innerHTML = data.value
-    li.style.backgroundColor = data.color;
-    into.appendChild(li);
+    into.innerHTML = `
+      <ul id="my-list">
+        ${data.list.join('')}
+      </ul>
+      <h2>Archive list</h2>
+      <ul id="archive">
+        ${data.archive.join('')}
+      </ul>
+      <form>
+        <input id="new-thing" />
+        <input id="new-thing-button" type="submit" value="Create new thing"></submit>
+      </form>
+    `;    
   }
-})()
+
+  render(state, container);
+
+})();
