@@ -29,5 +29,3 @@ var url = fetch(gmaps)
     }).then((json)=>{
         console.log('Temp: ' + json.currently.temperature + ' F')
     })
-
-//console.log(typeof url)
