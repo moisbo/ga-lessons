@@ -22,11 +22,9 @@ function buildAWebsite(done) {
 }
 
 // Your solution here
-learnJS((iKnow)=>{
-  console.log(iKnow);
-  buildAWebsite((pro)=>{
-    console.log(pro);
-  });
+learnJS((msg)=>{
+  console.log(msg)
+  buildAWebsite(console.log)
 })
 
 console.log('I signed up for JS1')

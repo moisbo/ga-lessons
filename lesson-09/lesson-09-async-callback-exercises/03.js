@@ -15,9 +15,6 @@ function getTheWeather(done) {
 }
 
 // Your solution here
-getTheWeather((weather)=>{
-  console.log(weather);
-})
+getTheWeather(console.log);
 
 console.log('What is the weather?')
-

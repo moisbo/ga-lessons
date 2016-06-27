@@ -24,9 +24,7 @@ warmUp((warmUpMessage) => {
   console.log(warmUpMessage)
 
   // Your solution here
-  goSurfing((warmed)=>{
-    console.log(warmed);
-  })
+  goSurfing(console.log);
 })
 
 

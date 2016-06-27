@@ -1,0 +1,15 @@
+{
+  "name": "js1-fetch-practice",
+  "private": true,
+  "version": "0.0.0",
+  "description": "JS1: Fetch Practice",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "isomorphic-fetch": "^2.2.1"
+  }
+}

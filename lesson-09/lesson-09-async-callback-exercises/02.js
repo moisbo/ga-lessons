@@ -7,9 +7,8 @@
  * > I made it!
  */
 
-function commuting(done) {
+function commuting() {
   console.log('On my way.')
-  done()
 }
 
 function arrived() {
@@ -17,10 +16,8 @@ function arrived() {
 }
 
 // Use `arrived` here
+setTimeout(()=>{
+  arrived();
+},500)
 
-
-commuting(()=>{
-  setTimeout(()=>{
-    arrived()
-  }, 500)
-})
+commuting()
