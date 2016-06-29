@@ -14,18 +14,20 @@ require('isomorphic-fetch');
 
 // Your code here...
 var gmaps = 'http://maps.googleapis.com/maps/api/geocode/json?address=Sydney'
-var forecast = 'https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE'
+// forecast = 'https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE'
 
-var url = fetch(gmaps)
+fetch(gmaps)
     .then((response)=>{
         return response.json()
     }).then((json)=>{
         var coords =  json.results[0].geometry.location
         var url = 'https://api.forecast.io/forecast/'+ process.env.FORECAST_KEY + '/' +coords.lat+ ',' + coords.lng
-        console.log(url)
         return fetch(url)
     }).then((response)=>{
         return response.json()
     }).then((json)=>{
-        console.log('Temp: ' + json.currently.temperature + ' F')
+        var temp = ((json.currently.temperature - 32) / (9/5) ).toFixed(2)
+        console.log('Temp: ' + temp + ' C') 
+    }).catch((error)=>{
+        console.log(error.message)
     })
