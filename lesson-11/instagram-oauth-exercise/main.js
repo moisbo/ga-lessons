@@ -37,12 +37,14 @@
         return response.json();
       }).then((response)=>{
         console.log(response)
-        state.image = response.data[2].images.low_resolution.url;
-        state.location = response.data[2].location.name;
-        state.user_name = response.data[2].user.full_name;
-        state.link = response.data[2].link;
-        var coords = {lat: response.data[2].location.latitude, lng: response.data[2].location.longitude};
-        return fetch(forecastBasUrl + state.forecast_token + '/' +coords.lat+ ',' + coords.lng)
+        state.image = response.data[0].images.low_resolution.url;
+        state.location = response.data[0].location.name;
+        state.user_name = response.data[0].user.full_name;
+        state.link = response.data[0].link;
+        state.created_time = response.data[0].created_time;
+        state.date = new Date(state.created_time * 1000);
+        var coords = {lat: response.data[0].location.latitude, lng: response.data[0].location.longitude};
+        return fetch(forecastBasUrl + state.forecast_token + '/' +coords.lat+ ',' + coords.lng+ ',' + state.created_time)
       }).then((response)=>{
         return response.json();
       }).then((response)=>{
@@ -56,7 +58,6 @@
   }
 
   function renderLogin(data, into) {
-    // TODO: Add the template
      into.innerHTML = `
      <!-- The "not yet authorized" state -->
       <h2>What was the weather when you snapped your shot?</h2>
@@ -67,12 +68,12 @@
   }
 
   function renderImages(data, into) {
-    // TODO: Add the template
     into.innerHTML = `
       <h2>Hey, ${data.user_name} here's the weather during your shot!</h2>
       <div class="instaweather">
         <a href="${data.link}" target="_blank"><img src="${data.image}" /></a>
-        The weather was: ${data.weather} &#8451 ${data.location}
+        The weather was: ${data.weather} &#8451 ${data.location} <br/>
+        ${data.date}
       </div>
     `;
   }
