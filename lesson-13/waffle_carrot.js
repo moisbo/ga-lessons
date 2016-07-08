@@ -13,7 +13,8 @@ const food = {
     console.log(`you ate the ${this.type}`)
   },
   getTasty: function() {
-    console.log(`tasty is ${this.tasty}`)
+    console.log(`tasty ${this.type 
+      }is ${this.tasty}`)
   }
 }
 const waffle = Object.create(food)
